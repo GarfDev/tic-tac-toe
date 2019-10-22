@@ -1,25 +1,24 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import GameTable from "./components/GameTable";
+import InputForm from "./components/InputForm";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
+  const [gameTable, setGameTable] = useState([null, null, null, null, null, null,null, null, null])
+  const [gameTableHistory, setGameTableHistory] = useState([])
+  const [userName, setUserName] = useState('')
+  if(!userName) return <InputForm setUserName={setUserName} />
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GameTable
+      gameTableHistory = {gameTableHistory}
+      setGameTableHistory = {setGameTableHistory}
+      gameTable={gameTable}
+      setGameTable={setGameTable} />
+    </>
   );
 }
 
