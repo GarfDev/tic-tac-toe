@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import FacebookLogin from 'react-facebook-login';
 
-const responseFacebook = (response) => {
-  console.log(response);
-}
 
 export default function InputForm(props) {
+
+  const responseFacebook = (response) => {
+    let tempUserState = props.userState
+    tempUserState.currentUser = response.name
+    console.log("input", props.userState.currentUser)
+    props.setUserState({...tempUserState})
+  }
+
   const [tempUserName, setTempUserName] = useState('')
   return (
     <div className="container inputForm">

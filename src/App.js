@@ -9,8 +9,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   const [gameTable, setGameTable] = useState([null, null, null, null, null, null,null, null, null])
   const [gameTableHistory, setGameTableHistory] = useState([])
-  const [userName, setUserName] = useState('')
-  if(!userName) return <InputForm setUserName={setUserName} />
+  const [userState, setUserState] = useState(new Object({
+  currentUser: "",
+  winningTimes: 0,
+  previousWinList: [{username:"A", windate: Date.now()}]
+}))
+console.log("app", userState.currentUser)
+  if(!userState.currentUser) return <InputForm userState={userState} setUserState={setUserState} />
   return (
     <>
       <GameTable
