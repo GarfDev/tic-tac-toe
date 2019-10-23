@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Carousel from 'react-bootstrap/Carousel'
 
 
 export default function GameTable (props){
@@ -16,20 +17,36 @@ export default function GameTable (props){
       [2,4,6]
     ];
 
-
+const updateGameScope = async () => {
+  let data = new URLSearchParams();
+  data.append("player", props.userState.currentUser);
+  data.append("score", props.gameHighScope[2].score - Date.now());
+  const url = `https://ftw-highscores.herokuapp.com/tictactoe-dev`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: data.toString(),
+    json: true
+  });
+  console.log("I sent new packet to server api")
+}
 
 const handleOnChange = (idx) => {
   if(isGameOver) return
   let TempArray = props.gameTable.slice();
-  props.setGameTableHistory([...props.gameTableHistory, TempArray])
   if(!TempArray[idx]) {
     TempArray[idx] = TempArray.filter(value => value===null).length%2 ? "X" : "O";
+    props.setGameTableHistory([...props.gameTableHistory, TempArray])
     props.setGameTable(TempArray)
   }
   if(findTheWinner(TempArray, idx)){
     setWinner(TempArray[findTheWinner(TempArray,idx)[0]])
     setWinningButtons(findTheWinner(TempArray, idx))
     setIsGameOver(true)
+    updateGameScope()
+    props.FetchHistory()
   }
 }
 
@@ -48,6 +65,7 @@ const HistoryBar = (props) => {
 
   return (
     <div className="container">
+    <h1>Hello, {props.userState.currentUser}</h1>
       <div className="GameTable">
         {props.gameTable.map((value, idx) => {
           return (
@@ -80,6 +98,16 @@ const HistoryBar = (props) => {
           )
         })}
       </div>
+      <Carousel>
+        {props.gameHighScope.map(scope => {
+          return (
+            <Carousel.Item>
+              <h3>{scope.player}</h3>
+              <p>{scope.score}</p>
+            </Carousel.Item>
+          )
+        })}
+      </Carousel>
     </div>
   );
 };

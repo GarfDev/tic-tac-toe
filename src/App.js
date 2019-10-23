@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
+  const [gameHighScope, setGameHighscope] = useState([])
   const [gameTable, setGameTable] = useState([null, null, null, null, null, null,null, null, null])
   const [gameTableHistory, setGameTableHistory] = useState([])
   const [userState, setUserState] = useState(new Object({
@@ -15,10 +16,25 @@ function App() {
   previousWinList: [{username:"A", windate: Date.now()}]
 }))
 console.log("app", userState.currentUser)
+
+const FetchHistory = async () => {
+  const response = await fetch("https://ftw-highscores.herokuapp.com/tictactoe-dev")
+  const data = await response.json()
+  console.log(data.items)
+  setGameHighscope(data.items)
+}
+
+useEffect(() => {FetchHistory()},[userState])
+
   if(!userState.currentUser) return <InputForm userState={userState} setUserState={setUserState} />
   return (
     <>
       <GameTable
+      FetchHistory = {FetchHistory}
+      gameHighScope = {gameHighScope}
+      setGameHighscope = {setGameHighscope}
+      userState = {userState}
+      setUserState = {setUserState}
       gameTableHistory = {gameTableHistory}
       setGameTableHistory = {setGameTableHistory}
       gameTable={gameTable}

@@ -58,21 +58,70 @@
 }
 
 .Input-Form{
-  padding: 40px 100px 40px 100px;
+  padding: 20px 50px 20px 50px;
+  width: 40%;
+  font-family: monospace 20px;
   border: 2px solid lightgrey;
   border-radius: 30px;
+  text-align: center;
+  transition-duration: 1s;
 }
 
 .Input-Form:active{
   outline: none;
-  padding: 40px 100px 40px 100px;
+  width: 80%;
+  padding: 20px 100px 20px 100px;
   border: 2px solid red;
   border-radius: 30px;
+  transition-duration: 1s;
 }
 
 .Input-Form:focus{
   outline: none;
-  padding: 40px 100px 40px 100px;
+  width: 80%;
+  padding: 20px 100px 20px 100px;
   border: 2px solid red;
   border-radius: 30px;
+  transition-duration: 1s;
+}
+
+.kep-login-facebook {
+  background-color:white !important;
+  color: red !important;
+  border-radius: 40px !important;
+  border: 2px solid lightgrey !important;
+  padding: 19px 29px 19px 29px !important;
+  margin: 10px
+}
+
+.kep-login-facebook:hover{
+  border: 2px solid red !important;
+}
+
+.google-button{
+  background-color:white !important;
+  color: red !important;
+  border: 2px solid lightgrey !important;
+  padding: 10px 20px 10px 20px !important;
+  margin: 10px;
+  border-radius: 40px !important;
+  box-shadow: none !important;
+}
+
+.google-button > span{
+  font-weight: bold !important;
+
+}
+
+.google-button:hover{
+  border: 2px solid red !important;
+}
+
+.carousel {
+  margin: 20px;
+  text-align: center;
+}
+
+.History{
+  text-align: center;
 }

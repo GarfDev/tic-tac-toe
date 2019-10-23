@@ -7,10 +7,11 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.0.5",
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "HTTPS=true react-scripts start", 
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
