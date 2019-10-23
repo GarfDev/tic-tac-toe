@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 
 export default function InputForm(props) {
-
+  
   const responseFacebook = (response) => {
     let tempUserState = props.userState
     tempUserState.currentUser = response.name
